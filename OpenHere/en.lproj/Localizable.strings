@@ -1,0 +1,74 @@
+"common.ok" = "OK";
+"common.cancel" = "Cancel";
+"common.gotIt" = "Got It";
+
+"menu.settings" = "Settings...";
+"menu.addToFinderToolbar" = "Add to Finder Toolbar...";
+"dock.openCurrentFinderDirectory" = "Open Current Finder Folder";
+
+"settings.title" = "OpenHere Settings";
+"settings.windowTitle" = "OpenHere Settings";
+"settings.description" = "Choose which terminal to open in the current Finder folder. After setup, you can drag OpenHere.app to the Finder toolbar.";
+"settings.optionHint" = "Hold Option while launching OpenHere to reopen this settings window at any time.";
+"settings.applicationsHint" = "Move OpenHere.app to the Applications folder before adding it to the Finder toolbar.";
+"settings.showFinderToolbarGuide" = "Add to Finder Toolbar...";
+"settings.defaultTerminal" = "Default Terminal";
+"settings.customTerminal" = "Custom Terminal";
+"settings.customExecutablePath" = "Executable Path";
+"settings.choose" = "Choose...";
+"settings.argumentsTemplate" = "Arguments Template";
+"settings.argumentsTemplateHint" = "Use {path} to represent the current Finder folder.";
+"settings.testOpenCurrentFinderDirectory" = "Test Open Current Finder Folder";
+"settings.complete" = "Done";
+"settings.chooseExecutableMessage" = "Choose a terminal app (.app) or an executable file.";
+
+"finderToolbarGuide.title" = "Add to Finder Toolbar";
+"finderToolbarGuide.windowTitle" = "Add to Finder Toolbar";
+"finderToolbarGuide.description" = "After adding OpenHere to the Finder toolbar, you can click its icon in any Finder folder to open a terminal at the current directory.";
+"finderToolbarGuide.step1" = "1. Make sure OpenHere.app is in the Applications folder";
+"finderToolbarGuide.step2" = "2. Open Finder";
+"finderToolbarGuide.step3" = "3. Find OpenHere.app in Applications";
+"finderToolbarGuide.step4" = "4. Hold the Command key";
+"finderToolbarGuide.step5" = "5. Drag OpenHere.app to the toolbar at the top of the Finder window";
+"finderToolbarGuide.step6" = "6. Release when you see the green plus badge";
+"finderToolbarGuide.footer" = "After that, click the OpenHere icon in the current Finder folder to open your terminal.";
+"finderToolbarGuide.revealApp" = "Reveal OpenHere in Finder";
+"finderToolbarGuide.openApplications" = "Open Applications Folder";
+
+"launchChoice.title" = "OpenHere";
+"launchChoice.windowTitle" = "OpenHere";
+"launchChoice.description" = "You can open a terminal in the current Finder folder now, or go to settings first.";
+"launchChoice.rememberDirectLaunch" = "Always open the current Finder folder directly and stop asking";
+"launchChoice.hint" = "You can also reopen settings later from the settings window, the app menu, or by holding Option while launching.";
+"launchChoice.openSettings" = "Open Settings";
+"launchChoice.openCurrentFinderDirectory" = "Open Current Finder Folder";
+
+"terminalProfile.terminalApp" = "Terminal.app";
+"terminalProfile.iTerm2" = "iTerm2";
+"terminalProfile.custom" = "Custom Terminal";
+
+"error.alert.title" = "OpenHere Failed";
+"error.terminal.appNotFound" = "Terminal.app was not found. Make sure the system terminal is available.";
+"error.terminal.iTermNotFound" = "iTerm2 was not found. Install it, or choose Terminal.app in settings.";
+"error.terminal.missingCustomExecutablePath" = "Enter the executable path for the custom terminal first.";
+"error.terminal.customExecutableNotFound" = "The custom terminal path does not exist.";
+"error.terminal.customExecutableNotExecutable" = "The custom terminal file is not executable. Make sure you selected a real executable.";
+"error.terminal.invalidDirectory" = "The current Finder folder is invalid, so the terminal could not be launched.";
+"error.terminal.launchFailed" = "Failed to launch terminal: %@";
+
+"error.finderAutomation.targetUnavailable" = "Finder could not be located, so automation permission could not be requested.";
+"error.finderAutomation.permissionDenied" = "OpenHere cannot read the current Finder folder. Allow OpenHere to control Finder.";
+"error.finderAutomation.targetUnavailable.reason" = "The system did not return a valid Finder Apple Events target.";
+"error.finderAutomation.permissionDenied.reason" = "Requesting Finder automation permission failed with status code: %d.";
+"error.finderAutomation.targetUnavailable.recovery" = "Make sure Finder is available, then try again.";
+"error.finderAutomation.permissionDenied.recovery" = "Go to System Settings > Privacy & Security > Automation, allow OpenHere to control Finder, then try again. If OpenHere is not listed yet, restart the app and try again.";
+
+"error.finderPath.permissionDenied" = "OpenHere cannot read the current Finder folder. Allow OpenHere to control Finder.";
+"error.finderPath.scriptCompilationFailed" = "The Finder path script could not be initialized.";
+"error.finderPath.scriptExecutionFailed" = "OpenHere cannot read the current Finder folder. Allow OpenHere to control Finder in System Settings.";
+"error.finderPath.invalidPath" = "Finder returned an invalid folder.";
+"error.finderPath.scriptCompilationFailed.reason" = "The built-in Finder AppleScript could not be compiled.";
+"error.finderPath.invalidPath.reason" = "The path returned by Finder does not exist, or it is not a folder.";
+"error.finderPath.permissionDenied.recovery" = "If the system prompt did not appear, make sure Apple Events is enabled in Hardened Runtime, then run OpenHere again.";
+"error.finderPath.scriptExecutionFailed.recovery" = "Go to System Settings > Privacy & Security > Automation, allow OpenHere to control Finder, then try again.";
+"error.finderPath.invalidPath.recovery" = "Switch Finder to a valid folder, then try again.";

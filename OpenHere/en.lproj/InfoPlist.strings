@@ -1,0 +1,1 @@
+"NSAppleEventsUsageDescription" = "OpenHere needs to read the current Finder window path so it can open the current folder in your terminal.";
