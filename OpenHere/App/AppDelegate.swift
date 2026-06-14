@@ -16,6 +16,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let launcherFactory = TerminalLauncherFactory()
     private let errorPresenter = ErrorPresenter()
     private var launchChoiceWindowController: NSWindowController?
+    private var shouldTerminateWhenLaunchChoiceCloses = true
 
     private lazy var settingsWindowController = SettingsWindowController(
         settings: settings,
@@ -135,6 +136,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     self.settings.launchBehavior = .directAction
                 }
 
+                self.shouldTerminateWhenLaunchChoiceCloses = false
                 self.closeLaunchChoiceWindow()
                 Task {
                     await self.performQuickAction()
@@ -142,6 +144,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             },
             onOpenSettings: { [weak self] in
                 guard let self else { return }
+                self.shouldTerminateWhenLaunchChoiceCloses = false
                 self.closeLaunchChoiceWindow()
                 self.settingsWindowController.show()
             },
@@ -157,6 +160,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered,
             defer: false
         )
+        shouldTerminateWhenLaunchChoiceCloses = true
         window.center()
         window.title = L10n.tr("launchChoice.windowTitle")
         window.contentViewController = NSHostingController(rootView: view)
@@ -184,7 +188,9 @@ extension AppDelegate: NSWindowDelegate {
 
         if closedWindow === launchChoiceWindowController?.window {
             launchChoiceWindowController = nil
-            NSApp.terminate(nil)
+            if shouldTerminateWhenLaunchChoiceCloses {
+                NSApp.terminate(nil)
+            }
         }
     }
 }
