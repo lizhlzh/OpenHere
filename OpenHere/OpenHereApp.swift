@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct OpenHereApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Settings {
+            EmptyView()
+        }
+        .commands {
+            CommandGroup(replacing: .appSettings) {
+                Button("设置...") {
+                    appDelegate.showPreferencesWindow(nil)
+                }
+                .keyboardShortcut(",", modifiers: .command)
+            }
         }
     }
 }
