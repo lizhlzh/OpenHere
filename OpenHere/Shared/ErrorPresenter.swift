@@ -13,7 +13,7 @@ final class ErrorPresenter {
     func present(_ error: Error) {
         let alert = NSAlert()
         alert.alertStyle = .warning
-        alert.messageText = "OpenHere 执行失败"
+        alert.messageText = L10n.tr("error.alert.title")
 
         if let localizedError = error as? LocalizedError {
             alert.informativeText = [
@@ -27,7 +27,7 @@ final class ErrorPresenter {
             alert.informativeText = error.localizedDescription
         }
 
-        alert.addButton(withTitle: "好")
+        alert.addButton(withTitle: L10n.tr("common.ok"))
 
         NSApp.activate(ignoringOtherApps: true)
         alert.runModal()

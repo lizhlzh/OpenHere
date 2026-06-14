@@ -17,11 +17,11 @@ enum TerminalProfile: String, CaseIterable, Identifiable, Sendable {
     var displayName: String {
         switch self {
         case .terminalApp:
-            "Terminal.app"
+            L10n.tr("terminalProfile.terminalApp")
         case .iTerm2:
-            "iTerm2"
+            L10n.tr("terminalProfile.iTerm2")
         case .custom:
-            "自定义终端"
+            L10n.tr("terminalProfile.custom")
         }
     }
 }

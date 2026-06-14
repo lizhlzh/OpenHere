@@ -17,10 +17,14 @@ struct OpenHereApp: App {
         }
         .commands {
             CommandGroup(replacing: .appSettings) {
-                Button("设置...") {
+                Button(L10n.tr("menu.settings")) {
                     appDelegate.showPreferencesWindow(nil)
                 }
                 .keyboardShortcut(",", modifiers: .command)
+
+                Button(L10n.tr("menu.addToFinderToolbar")) {
+                    appDelegate.showFinderToolbarGuide(nil)
+                }
             }
         }
     }

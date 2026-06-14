@@ -18,6 +18,13 @@
 "settings.choose" = "Choose...";
 "settings.argumentsTemplate" = "Arguments Template";
 "settings.argumentsTemplateHint" = "Use {path} to represent the current Finder folder.";
+"settings.customCommandPlaceholderHint" = "For custom terminals, use {command} in the arguments template if you want to pass the command explicitly.";
+"settings.customTerminalExamples" = "Examples:\n`--working-directory {path}`\n`-e \"cd {path}; {command}\"`";
+"settings.postLaunchCommand" = "Command to Run After Opening";
+"settings.enablePostLaunchCommand" = "Run this command after opening the terminal";
+"settings.postLaunchCommandPlaceholder" = "Optional single-line command";
+"settings.postLaunchCommandHint" = "If set, OpenHere will enter the folder first, then run this command. Terminal.app and iTerm2 support this directly.";
+"settings.postLaunchCommandSafetyHint" = "This command is passed to the terminal as-is. Only use commands you trust.";
 "settings.testOpenCurrentFinderDirectory" = "Test Open Current Finder Folder";
 "settings.complete" = "Done";
 "settings.chooseExecutableMessage" = "Choose a terminal app (.app) or an executable file.";
@@ -54,7 +61,9 @@
 "error.terminal.customExecutableNotFound" = "The custom terminal path does not exist.";
 "error.terminal.customExecutableNotExecutable" = "The custom terminal file is not executable. Make sure you selected a real executable.";
 "error.terminal.invalidDirectory" = "The current Finder folder is invalid, so the terminal could not be launched.";
+"error.terminal.scriptInitializationFailed" = "The terminal automation script could not be initialized.";
 "error.terminal.launchFailed" = "Failed to launch terminal: %@";
+"error.terminal.launchFailedGeneric" = "Failed to launch terminal.";
 
 "error.finderAutomation.targetUnavailable" = "Finder could not be located, so automation permission could not be requested.";
 "error.finderAutomation.permissionDenied" = "OpenHere cannot read the current Finder folder. Allow OpenHere to control Finder.";

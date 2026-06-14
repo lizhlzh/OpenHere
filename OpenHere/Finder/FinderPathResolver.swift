@@ -19,13 +19,13 @@ extension FinderPathError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .permissionDenied:
-            "无法读取 Finder 当前目录。请允许 OpenHere 控制 Finder。"
+            L10n.tr("error.finderPath.permissionDenied")
         case .scriptCompilationFailed:
-            "无法初始化 Finder 路径脚本。"
+            L10n.tr("error.finderPath.scriptCompilationFailed")
         case .scriptExecutionFailed:
-            "无法读取 Finder 当前目录。请在系统设置中允许 OpenHere 控制 Finder。"
+            L10n.tr("error.finderPath.scriptExecutionFailed")
         case .invalidPath:
-            "Finder 返回的目录无效。"
+            L10n.tr("error.finderPath.invalidPath")
         }
     }
 
@@ -34,24 +34,24 @@ extension FinderPathError: LocalizedError {
         case .permissionDenied(let underlying):
             underlying.localizedDescription
         case .scriptCompilationFailed:
-            "内置的 Finder AppleScript 无法编译。"
+            L10n.tr("error.finderPath.scriptCompilationFailed.reason")
         case .scriptExecutionFailed(let message):
             message
         case .invalidPath:
-            "Finder 返回的路径不存在，或不是文件夹。"
+            L10n.tr("error.finderPath.invalidPath.reason")
         }
     }
 
     var recoverySuggestion: String? {
         switch self {
         case .permissionDenied:
-            "如果系统尚未弹出授权框，请确认已在 Hardened Runtime 中启用 Apple Events，然后重新运行 OpenHere。"
+            L10n.tr("error.finderPath.permissionDenied.recovery")
         case .scriptCompilationFailed:
             nil
         case .scriptExecutionFailed:
-            "请前往 系统设置 > 隐私与安全性 > 自动化，允许 OpenHere 控制 Finder，然后重试。"
+            L10n.tr("error.finderPath.scriptExecutionFailed.recovery")
         case .invalidPath:
-            "请切换到一个有效的 Finder 目录后重试。"
+            L10n.tr("error.finderPath.invalidPath.recovery")
         }
     }
 }
@@ -61,23 +61,33 @@ struct FinderPathResolver {
 
     private let scriptSource = """
     tell application "Finder"
-        if (count of Finder windows) > 0 then
-            set theTarget to target of front Finder window
-            return POSIX path of (theTarget as alias)
-        else
-            set theSelection to selection
-            if theSelection is not {} then
-                set theItem to item 1 of theSelection
-                if class of theItem is folder then
-                    return POSIX path of (theItem as alias)
-                else
-                    set parentFolder to container of theItem
-                    return POSIX path of (parentFolder as alias)
-                end if
-            else
-                return POSIX path of (path to desktop folder)
+        try
+            if (count of Finder windows) > 0 then
+                try
+                    set theTarget to target of front Finder window
+                    return POSIX path of (theTarget as alias)
+                on error
+                end try
             end if
-        end if
+
+            try
+                set theSelection to selection
+                if theSelection is not {} then
+                    set theItem to item 1 of theSelection
+                    if class of theItem is folder then
+                        return POSIX path of (theItem as alias)
+                    else
+                        set parentFolder to container of theItem
+                        return POSIX path of (parentFolder as alias)
+                    end if
+                end if
+            on error
+            end try
+
+            return POSIX path of (path to desktop folder)
+        on error
+            return POSIX path of (path to desktop folder)
+        end try
     end tell
     """
 

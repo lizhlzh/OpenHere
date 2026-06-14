@@ -10,6 +10,7 @@ import Foundation
 struct ProcessTerminalLauncher: TerminalLaunching {
     let executableURL: URL?
     let argumentsTemplate: [String]
+    let postLaunchCommand: String?
 
     func open(at directory: URL) async throws {
         guard directory.isFileURL else {
@@ -33,7 +34,11 @@ struct ProcessTerminalLauncher: TerminalLaunching {
         let process = Process()
         process.executableURL = resolvedExecutableURL
         process.currentDirectoryURL = directory
-        process.arguments = argumentsTemplate.map { $0.replacingOccurrences(of: "{path}", with: directory.path) }
+        process.arguments = argumentsTemplate.map {
+            $0
+                .replacingOccurrences(of: "{path}", with: directory.path)
+                .replacingOccurrences(of: "{command}", with: postLaunchCommand ?? "")
+        }
 
         do {
             try process.run()

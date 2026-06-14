@@ -9,11 +9,13 @@ import Foundation
 
 struct TerminalLauncherFactory {
     func makeLauncher(using configuration: TerminalConfiguration) -> TerminalLaunching {
+        let postLaunchCommand = normalizedPostLaunchCommand(from: configuration)
+
         switch configuration.profile {
         case .terminalApp:
-            return WorkspaceTerminalLauncher()
+            return WorkspaceTerminalLauncher(postLaunchCommand: postLaunchCommand)
         case .iTerm2:
-            return ITermLauncher()
+            return ITermLauncher(postLaunchCommand: postLaunchCommand)
         case .custom:
             let executableURL: URL?
 
@@ -25,8 +27,18 @@ struct TerminalLauncherFactory {
 
             return ProcessTerminalLauncher(
                 executableURL: executableURL,
-                argumentsTemplate: configuration.customArgumentsTemplate
+                argumentsTemplate: configuration.customArgumentsTemplate,
+                postLaunchCommand: postLaunchCommand
             )
         }
+    }
+
+    private func normalizedPostLaunchCommand(from configuration: TerminalConfiguration) -> String? {
+        guard configuration.shouldRunPostLaunchCommand else {
+            return nil
+        }
+
+        let command = configuration.postLaunchCommand.trimmingCharacters(in: .whitespacesAndNewlines)
+        return command.isEmpty ? nil : command
     }
 }

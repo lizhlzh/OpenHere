@@ -10,6 +10,7 @@ import Foundation
 
 struct ITermLauncher: TerminalLaunching {
     private let bundleIdentifier = "com.googlecode.iterm2"
+    let postLaunchCommand: String?
 
     func open(at directory: URL) async throws {
         guard directory.isFileURL else {
@@ -20,7 +21,7 @@ struct ITermLauncher: TerminalLaunching {
             throw TerminalLaunchError.iTermNotFound
         }
 
-        let command = "cd \(shellQuoted(directory.path))"
+        let command = composedShellCommand(for: directory)
         let source = """
         tell application "iTerm2"
             activate
@@ -36,7 +37,7 @@ struct ITermLauncher: TerminalLaunching {
 
     private func runAppleScript(_ source: String) throws {
         guard let script = NSAppleScript(source: source) else {
-            throw TerminalLaunchError.appleScriptFailed(message: "无法初始化 iTerm2 脚本。")
+            throw TerminalLaunchError.appleScriptFailed(message: L10n.tr("error.terminal.scriptInitializationFailed"))
         }
 
         var executionError: NSDictionary?
@@ -56,6 +57,16 @@ struct ITermLauncher: TerminalLaunching {
 
     private func shellQuoted(_ value: String) -> String {
         "'\(value.replacingOccurrences(of: "'", with: "'\"'\"'"))'"
+    }
+
+    private func composedShellCommand(for directory: URL) -> String {
+        var command = "cd \(shellQuoted(directory.path))"
+
+        if let postLaunchCommand, postLaunchCommand.isEmpty == false {
+            command += "; \(postLaunchCommand)"
+        }
+
+        return command
     }
 
     private func appleScriptEscaped(_ value: String) -> String {

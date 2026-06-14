@@ -1,0 +1,83 @@
+"common.ok" = "好";
+"common.cancel" = "取消";
+"common.gotIt" = "我知道了";
+
+"menu.settings" = "设置...";
+"menu.addToFinderToolbar" = "添加到 Finder 工具栏...";
+"dock.openCurrentFinderDirectory" = "打开当前 Finder 目录";
+
+"settings.title" = "OpenHere 设置";
+"settings.windowTitle" = "OpenHere 设置";
+"settings.description" = "选择在 Finder 当前文件夹中打开的终端。完成后可将 OpenHere.app 拖到 Finder 工具栏使用。";
+"settings.optionHint" = "按住 Option 启动 OpenHere，可随时重新打开这个设置窗口。";
+"settings.applicationsHint" = "建议先将 OpenHere.app 放入“应用程序”文件夹，再添加到 Finder 工具栏。";
+"settings.showFinderToolbarGuide" = "添加到 Finder 工具栏...";
+"settings.defaultTerminal" = "默认终端";
+"settings.customTerminal" = "自定义终端";
+"settings.customExecutablePath" = "可执行文件路径";
+"settings.choose" = "选择...";
+"settings.argumentsTemplate" = "参数模板";
+"settings.argumentsTemplateHint" = "使用 {path} 表示 Finder 当前目录";
+"settings.customCommandPlaceholderHint" = "如果希望为自定义终端显式传入命令，可在参数模板中使用 {command} 占位符。";
+"settings.customTerminalExamples" = "示例：\n`--working-directory {path}`\n`-e \"cd {path}; {command}\"`";
+"settings.postLaunchCommand" = "打开后执行命令";
+"settings.enablePostLaunchCommand" = "打开终端后执行这条命令";
+"settings.postLaunchCommandPlaceholder" = "可选的一行命令";
+"settings.postLaunchCommandHint" = "如果填写，OpenHere 会先进入当前目录，再执行这条命令。Terminal.app 和 iTerm2 直接支持该行为。";
+"settings.postLaunchCommandSafetyHint" = "这条命令会原样交给终端执行，只应填写你确认安全的命令。";
+"settings.testOpenCurrentFinderDirectory" = "测试打开当前 Finder 目录";
+"settings.complete" = "完成设置";
+"settings.chooseExecutableMessage" = "选择终端应用（.app）或可执行文件。";
+
+"finderToolbarGuide.title" = "添加到 Finder 工具栏";
+"finderToolbarGuide.windowTitle" = "添加到 Finder 工具栏";
+"finderToolbarGuide.description" = "将 OpenHere 添加到 Finder 工具栏后，你可以在任意 Finder 文件夹中点击图标，一键打开终端到当前目录。";
+"finderToolbarGuide.step1" = "1. 确认 OpenHere.app 已经放入“应用程序”文件夹";
+"finderToolbarGuide.step2" = "2. 打开 Finder";
+"finderToolbarGuide.step3" = "3. 在“应用程序”中找到 OpenHere.app";
+"finderToolbarGuide.step4" = "4. 按住 Command 键";
+"finderToolbarGuide.step5" = "5. 将 OpenHere.app 拖到 Finder 窗口顶部工具栏";
+"finderToolbarGuide.step6" = "6. 看到绿色加号后松开";
+"finderToolbarGuide.footer" = "以后在 Finder 当前文件夹中点击 OpenHere 图标，即可打开终端。";
+"finderToolbarGuide.revealApp" = "在 Finder 中显示 OpenHere";
+"finderToolbarGuide.openApplications" = "打开应用程序文件夹";
+
+"launchChoice.title" = "OpenHere";
+"launchChoice.windowTitle" = "OpenHere";
+"launchChoice.description" = "你可以直接打开 Finder 当前目录的终端，也可以先进入设置。";
+"launchChoice.rememberDirectLaunch" = "以后直接打开当前 Finder 目录，不再询问";
+"launchChoice.hint" = "以后也可以从设置窗口、App 菜单，或按住 Option 启动重新进入设置。";
+"launchChoice.openSettings" = "打开设置";
+"launchChoice.openCurrentFinderDirectory" = "打开当前 Finder 目录";
+
+"terminalProfile.terminalApp" = "Terminal.app";
+"terminalProfile.iTerm2" = "iTerm2";
+"terminalProfile.custom" = "自定义终端";
+
+"error.alert.title" = "OpenHere 执行失败";
+"error.terminal.appNotFound" = "未找到 Terminal.app，请确认系统终端可用。";
+"error.terminal.iTermNotFound" = "未找到 iTerm2，请确认已经安装，或在设置中选择 Terminal.app。";
+"error.terminal.missingCustomExecutablePath" = "请先填写自定义终端的可执行文件路径。";
+"error.terminal.customExecutableNotFound" = "自定义终端路径不存在。";
+"error.terminal.customExecutableNotExecutable" = "自定义终端文件不可执行，请确认选择的是实际可执行文件。";
+"error.terminal.invalidDirectory" = "Finder 当前目录无效，无法启动终端。";
+"error.terminal.scriptInitializationFailed" = "无法初始化终端自动化脚本。";
+"error.terminal.launchFailed" = "启动终端失败：%@";
+"error.terminal.launchFailedGeneric" = "启动终端失败。";
+
+"error.finderAutomation.targetUnavailable" = "无法定位 Finder，无法请求自动化权限。";
+"error.finderAutomation.permissionDenied" = "无法读取 Finder 当前目录。请允许 OpenHere 控制 Finder。";
+"error.finderAutomation.targetUnavailable.reason" = "系统没有返回有效的 Finder Apple Events 目标。";
+"error.finderAutomation.permissionDenied.reason" = "Finder 自动化权限请求失败，系统状态码：%d。";
+"error.finderAutomation.targetUnavailable.recovery" = "请确认 Finder 正常可用后重试。";
+"error.finderAutomation.permissionDenied.recovery" = "请前往 系统设置 > 隐私与安全性 > 自动化，允许 OpenHere 控制 Finder，然后重试。若列表中尚未出现 OpenHere，请重新启动应用再试一次。";
+
+"error.finderPath.permissionDenied" = "无法读取 Finder 当前目录。请允许 OpenHere 控制 Finder。";
+"error.finderPath.scriptCompilationFailed" = "无法初始化 Finder 路径脚本。";
+"error.finderPath.scriptExecutionFailed" = "无法读取 Finder 当前目录。请在系统设置中允许 OpenHere 控制 Finder。";
+"error.finderPath.invalidPath" = "Finder 返回的目录无效。";
+"error.finderPath.scriptCompilationFailed.reason" = "内置的 Finder AppleScript 无法编译。";
+"error.finderPath.invalidPath.reason" = "Finder 返回的路径不存在，或不是文件夹。";
+"error.finderPath.permissionDenied.recovery" = "如果系统尚未弹出授权框，请确认已在 Hardened Runtime 中启用 Apple Events，然后重新运行 OpenHere。";
+"error.finderPath.scriptExecutionFailed.recovery" = "请前往 系统设置 > 隐私与安全性 > 自动化，允许 OpenHere 控制 Finder，然后重试。";
+"error.finderPath.invalidPath.recovery" = "请切换到一个有效的 Finder 目录后重试。";

@@ -27,23 +27,25 @@ extension TerminalLaunchError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .terminalAppNotFound:
-            "未找到 Terminal.app，请确认系统终端可用。"
+            L10n.tr("error.terminal.appNotFound")
         case .iTermNotFound:
-            "未找到 iTerm2，请确认已经安装，或在设置中选择 Terminal.app。"
+            L10n.tr("error.terminal.iTermNotFound")
         case .missingCustomExecutablePath:
-            "请先填写自定义终端的可执行文件路径。"
+            L10n.tr("error.terminal.missingCustomExecutablePath")
         case .customExecutableNotFound:
-            "自定义终端路径不存在。"
+            L10n.tr("error.terminal.customExecutableNotFound")
         case .customExecutableNotExecutable:
-            "自定义终端文件不可执行，请确认选择的是实际可执行文件。"
+            L10n.tr("error.terminal.customExecutableNotExecutable")
         case .invalidDirectory:
-            "Finder 当前目录无效，无法启动终端。"
+            L10n.tr("error.terminal.invalidDirectory")
+        case .appleScriptFailed(let message) where message.isEmpty:
+            L10n.tr("error.terminal.launchFailedGeneric")
         case .appleScriptFailed(let message):
-            "启动终端失败：\(message)"
+            L10n.tr("error.terminal.launchFailed", message)
         case .workspaceOpenFailed(let message):
-            "启动终端失败：\(message)"
+            L10n.tr("error.terminal.launchFailed", message)
         case .processLaunchFailed(let message):
-            "启动终端失败：\(message)"
+            L10n.tr("error.terminal.launchFailed", message)
         }
     }
 }
